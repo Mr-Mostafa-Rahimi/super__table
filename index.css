@@ -1,0 +1,355 @@
+@font-face {
+  font-family: "font";
+  src: url(/font.ttf);
+}
+
+* {
+  direction: rtl;
+  box-sizing: border-box;
+  outline: none;
+  margin: auto;
+  padding: 0;
+  position: relative;
+  font-family: "font";
+}
+
+:root {
+  --super--style--green--color: rgb(0, 166, 147);
+  --super--style--red--color: rgb(200, 29, 17);
+  --super--style--white--color: rgb(255, 255, 255);
+  --super--style--black--color: rgb(0, 0, 0);
+}
+
+html,
+body {
+  width: 100svw;
+  height: 100svh;
+  background: #e9ecef;
+  font-size: 14px;
+}
+
+section {
+  width: 100%;
+  padding: 5ch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5ch;
+}
+
+p {
+  margin: 0 auto;
+  font-size: 150%;
+}
+
+a {
+  margin: 0 auto;
+  text-decoration: none;
+  font-size: 125%;
+  padding: .5ch 2ch;
+  background: #283618;
+  color: #ffff;
+  border-radius: 1ch;
+}
+
+div {
+  width: 100%;
+  padding: 2ch;
+}
+
+
+table {
+  white-space: nowrap;
+  table-layout: auto;
+  border-spacing: 1ch;
+  gap: .25ch;
+}
+
+:is(th, td) {
+  background: rgb(255, 255, 255);
+  transition: .25s ease;
+  border-radius: .5ch;
+  padding: 1ch 2ch;
+  border: .1ch solid rgb(0, 0, 0, .25);
+  cursor: pointer;
+}
+
+:is(th, td):hover {
+  box-shadow: 0 .25ch .5ch rgb(0, 0, 0, .5);
+}
+
+:is(th, td):hover::after {
+  width: fit-content;
+  height: fit-content;
+  padding: 1ch;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  transform: translate(100%, 100%);
+  background: var(--super--style--white--color) !important;
+  color: var(--super--style--black--color) !important;
+  border: .1ch dashed var(--super--style--black--color);
+  border-radius: 1ch;
+  content: attr(in);
+  animation: opacity-animation .25s;
+  z-index: 1500;
+}
+
+.super--style--body::after {
+  width: clamp(100svw, 100svw, 100svw);
+  height: clamp(100svh, 100svh, 100svh);
+  position: fixed;
+  inset: 0;
+  background: rgb(0, 0, 0, .5);
+  content: "";
+  z-index: 1000;
+  animation: super--body--after .25s;
+}
+
+@keyframes super--body--after {
+  from {
+    opacity: 0;
+  }
+}
+
+.super--style {
+  all: unset;
+  direction: rtl;
+  box-sizing: border-box;
+  font-size: 1em;
+  transition: .5s ease;
+  scroll-behavior: smooth;
+  position: relative;
+  margin: auto;
+  padding: 0;
+  outline: none;
+  text-decoration: none;
+}
+
+.super--style--context--menu {
+  min-width: 45%;
+  max-width: 60%;
+  max-height: 80svh !important;
+  width: 45%;
+  height: fit-content;
+  position: fixed;
+  inset: 0;
+  padding: 2ch;
+  background: rgb(255, 255, 255);
+  border-radius: 2ch;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2ch;
+  transform-style: preserve-3d;
+  animation: to--top--animation .5s;
+  z-index: 2000;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--super--style--black--color) transparent;
+  scrollbar-gutter: 2px;
+
+  @media only screen and (max-width: 800px) {
+    min-width: 80%;
+    max-width: 80%;
+    width: 80%;
+  }
+}
+
+.super--style--context--menu::before {
+  width: fit-content;
+  padding: 1ch 2ch;
+  background: var(--super--style--black--color);
+  color: var(--super--style--white--color);
+  border-radius: 1ch;
+  margin: 1ch;
+  content: attr(title);
+  grid-area: 1/1/1/2;
+}
+
+.super--style--context--menu button {
+  width: 100%;
+  border-radius: 1ch;
+  padding: 1ch;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2ch;
+  cursor: pointer;
+}
+
+.super--style--context--menu button:hover span {
+  scale: 1.1;
+}
+
+:is(.super--style--column--add--button,
+  .super--style--row--add--button) {
+  border: .1ch solid var(--super--style--green--color);
+  color: var(--super--style--green--color);
+  grid-area: 6/1/6/2;
+}
+
+:is(.super--style--column--remove--button,
+  .super--style--row--remove--button) {
+  border: .1ch solid var(--super--style--red--color);
+  color: var(--super--style--red--color);
+  grid-area: 6/2/6/3;
+}
+
+:is(.super--style--column--add--button,
+  .super--style--column--remove--button,
+  .super--style--row--add--button,
+  .super--style--row--remove--button) span {
+  padding: .5ch;
+  border-radius: 1ch;
+  display: flex;
+  margin: auto 0;
+}
+
+:is(.super--style--column--add--button,
+  .super--style--column--remove--button,
+  .super--style--row--add--button,
+  .super--style--row--remove--button) svg {
+  width: 5ch;
+  aspect-ratio: 1/1;
+  fill: var(--super--style--white--color);
+  margin: auto 0;
+}
+
+:is(.super--style--column--add--button--span,
+  .super--style--row--add--button--span) {
+  background: var(--super--style--green--color);
+}
+
+:is(.super--style--column--remove--button--span,
+  .super--style--row--remove--button--span) {
+  background: var(--super--style--red--color);
+}
+
+:is(.super--style--color--init,
+  .super--style--background--color--init) {
+  width: 100%;
+  display: grid;
+  place-content: center;
+  grid-template-columns: 1fr repeat(3, auto);
+  gap: 2ch;
+  padding-bottom: 2ch;
+  border-bottom: .1ch dashed var(--super--style--black--color);
+  grid-area: 3/1/3/3;
+}
+
+.super--style--background--color--init {
+  grid-area: 4/1/4/3;
+}
+
+:is(.super--style--color--init input,
+  .super--style--background--color--init input) {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 10ch;
+  height: 10ch;
+  border-radius: 50%;
+  margin: auto 0;
+  border: none;
+  cursor: pointer;
+  gap: 1ch;
+
+  &::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+}
+
+.super--style--color--init input::before,
+.super--style--background--color--init input::before {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  background: transparent;
+  border-radius: 50%;
+  font-weight: bold;
+  display: grid;
+  place-content: center;
+  filter: invert(1) contrast(100%) brightness(100%);
+  mix-blend-mode: difference;
+  content: attr(name);
+}
+
+:is(.super--style--cell--editor--init,
+  .super--style--find--cell--init) {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2ch;
+  padding-bottom: 2ch;
+  border-bottom: .1ch dashed var(--super--style--black--color);
+  grid-area: 2/1/2/3;
+}
+
+.super--style--cell--editor--init {
+  grid-area: 5/1/5/3;
+}
+
+.super--style--find--cell--input {
+  padding: 1ch;
+  border-radius: 1ch;
+  width: 100%;
+}
+
+.super--style--find--cell--button {
+  padding: 1ch;
+  border-radius: 1ch;
+  border: .1ch solid var(--super--style--black--color);
+  width: 100%;
+  text-align: justify;
+  animation: to--top--animation .25s;
+}
+
+.super--style--cell--editor--textarea {
+  width: 100%;
+  border: .1ch solid rgb(0, 0, 0, .25);
+  border-radius: 2ch;
+  padding: 2ch;
+  text-align: justify;
+}
+
+.super--style--cell--editor--button {
+  background: var(--super--style--green--color);
+  color: var(--super--style--white--color);
+}
+
+.super--style--cell--editor--button--span {
+  background: var(--super--style--white--color);
+  padding: .5ch;
+  border-radius: 1ch;
+  display: flex;
+  margin: auto 0;
+}
+
+.super--style--cell--editor--button--span svg {
+  width: 5ch;
+  aspect-ratio: 1/1;
+  fill: var(--super--style--green--color);
+  margin: auto 0;
+}
+
+@keyframes to--top--animation {
+  from {
+    opacity: 0;
+    transform: perspective(50ch) rotateX(-15deg) rotateY(30deg) translateY(100%);
+  }
+}
+
+@keyframes opacity-animation {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes scale-animation {
+  from {
+    scale: 0;
+  }
+}
